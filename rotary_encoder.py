@@ -1,8 +1,9 @@
 from RPi import GPIO
 from time import sleep
 
-clk = 17
-dt = 18
+clk = 26 
+dt = 19
+byn = 4
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -18,10 +19,10 @@ try:
                 dtState = GPIO.input(dt)
                 if clkState != clkLastState:
                         if dtState != clkState:
-                                counter += 1
-                        else:
                                 counter -= 1
-                        print counter
+                        else:
+                                counter += 1
+                        print(counter)
                 clkLastState = clkState
                 sleep(0.01)
 finally:
